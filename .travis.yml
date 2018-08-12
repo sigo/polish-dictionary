@@ -7,7 +7,7 @@ services:
 
 before_install:
   - docker build -t polish-dictionary .
-  - docker run polish-dictionary
+  - docker -v dist:/code/dist/ run polish-dictionary
 
 script:
-  - echo "Done"
+  - wc -l dist/pl.txt

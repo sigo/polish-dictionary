@@ -2,7 +2,7 @@
 
 URL="https://sjp.pl/"
 DICTIONARIES_LIST_URL="${URL}slownik/en/"
-RESULT_FILE="pl.txt"
+RESULT_FILE="dist/pl.txt"
 
 echo
 echo "Downloading list of dictionaries"
