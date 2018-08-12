@@ -5,6 +5,7 @@ services:
 
 before_install:
   - docker build -t polish-dictionary .
+  - docker run polish-dictionary
 
 script:
   - echo "Done"
