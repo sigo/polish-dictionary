@@ -1,7 +1,7 @@
 language: bash
 
 env:
-  - DOCKER_IMAGE=polish-dictionary RESULT_DIR=dist/
+  - DOCKER_IMAGE=polish-dictionary RESULT_DIR=dist/ SSH_KEY=./id_rsa
 
 sudo: required
 
@@ -10,7 +10,9 @@ services:
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4abc9283474e_key -iv $encrypted_4abc9283474e_iv -in id_rsa.enc -out id_rsa -d
-  - ssh-add ./id_rsa
+  - eval `ssh-agent -s`
+  - ssh-add "${SSH_KEY}"
+  - rm "${SSH_KEY}"
 
 before_script:
   - docker build -t "${DOCKER_IMAGE}" .
@@ -21,4 +23,4 @@ script:
 after_success:
   - git add "${RESULT_DIR}"
   - git commit -m "Update"
-  - git log -n1
+  - git push
