@@ -3,9 +3,6 @@ language: bash
 env:
   - ENC_SSH_KEY=./id_rsa.enc SSH_KEY=./id_rsa DOCKER_IMAGE=polish-dictionary RESULT_DIR=dist/
 
-git:
-  depth: false
-
 sudo: required
 
 services:
@@ -17,6 +14,7 @@ before_install:
   - eval `ssh-agent -s`
   - ssh-add "${SSH_KEY}"
   - rm "${SSH_KEY}"
+  - git --unshallow
 
 before_script:
   - docker build -t "${DOCKER_IMAGE}" .
