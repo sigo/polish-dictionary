@@ -1,4 +1,4 @@
-language: generic
+language: bash
 
 env:
   - RESULT_FILE=pl.txt
