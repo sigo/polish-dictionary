@@ -1,7 +1,7 @@
 language: bash
 
 env:
-  - RESULT_DIR=dist/
+  - DOCKER_IMAGE=polish-dictionary RESULT_DIR=dist/
 
 sudo: required
 
@@ -9,10 +9,10 @@ services:
   - docker
 
 before_script:
-  - docker build -t polish-dictionary .
+  - docker build -t "${DOCKER_IMAGE}" .
 
 script:
-  - docker run -e RESULT_DIR -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" polish-dictionary
+  - docker run -e RESULT_DIR -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
 
 after_success:
   - git add "${RESULT_DIR}"
