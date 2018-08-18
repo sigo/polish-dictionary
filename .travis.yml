@@ -14,5 +14,5 @@ before_script:
 
 script:
   - echo $RESULT_FILE
-  - echo "$RESULT_FILE"
+  - echo "${RESULT_FILE}"
   - ls -la
