@@ -13,6 +13,7 @@ before_script:
 
 script:
   - docker run -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" polish-dictionary
+  - ls "${RESULT_DIR}"
 
 after_success:
   - ls "${RESULT_DIR}"
