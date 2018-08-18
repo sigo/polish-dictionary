@@ -1,7 +1,7 @@
 language: bash
 
 env:
-  - REPO_REMOTE="git@github.com:sigo/polish-dictionary.git" \
+  - REPO_URL="git@github.com:sigo/polish-dictionary.git" \
     ENC_SSH_KEY=./id_rsa.enc \
     DOCKER_IMAGE=polish-dictionary \
     RESULT_DIR=dist/
@@ -13,7 +13,9 @@ services:
 
 before_install:
   - eval `ssh-agent -s`
-  - openssl aes-256-cbc -K $encrypted_4abc9283474e_key -iv $encrypted_4abc9283474e_iv -in "${ENC_SSH_KEY}" -d | ssh-add -
+  - openssl aes-256-cbc -K $encrypted_4abc9283474e_key -iv $encrypted_4abc9283474e_iv -in "${ENC_SSH_KEY}" -d | \
+    ssh-add -
+  - git remote set-url origin "${REPO_URL}"
   # - git pull --unshallow
 
 before_script:
