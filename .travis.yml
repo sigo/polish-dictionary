@@ -1,8 +1,7 @@
 language: bash
 
 env:
-  - RESULT_FILE=pl.txt
-  - TEST_FILE=pl.txt
+  - RESULT_DIR=dist/
 
 sudo: required
 
@@ -11,6 +10,9 @@ services:
 
 before_script:
   - docker build -t polish-dictionary .
-  # - docker run -v dist:/code/dist/ polish-dictionary
-  - echo "${RESULT_FILE}"
-  - echo "${TEST_FILE}"
+
+script:
+  - docker run -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" polish-dictionary
+
+after_success:
+  - ls "${RESULT_DIR}"
