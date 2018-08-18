@@ -14,7 +14,7 @@ before_install:
   - eval `ssh-agent -s`
   - ssh-add "${SSH_KEY}"
   - rm "${SSH_KEY}"
-  - git pull --unshallow
+  # - git pull --unshallow
 
 before_script:
   - docker build -t "${DOCKER_IMAGE}" .
@@ -23,4 +23,4 @@ script:
   - docker run -e RESULT_DIR -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
   - git add "${RESULT_DIR}"
   - git commit -m "Update"
-  - git push
+  - git push -u origin master
