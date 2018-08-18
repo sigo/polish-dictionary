@@ -2,6 +2,7 @@ language: generic
 
 env:
   - RESULT_FILE = pl.txt
+  - TEST_FILE = pl.txt
 
 sudo: required
 
@@ -15,4 +16,6 @@ before_script:
 script:
   - echo $RESULT_FILE
   - echo "${RESULT_FILE}"
+  - echo $TEST_FILE
+  - echo "${TEST_FILE}"
   - ls -la
