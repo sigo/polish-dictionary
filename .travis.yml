@@ -16,3 +16,6 @@ script:
 
 after_success:
   - ls "${RESULT_DIR}"
+
+after_script:
+- ls "${RESULT_DIR}"
