@@ -142,3 +142,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+### Custom
+id_rsa
+id_rsa.pub
