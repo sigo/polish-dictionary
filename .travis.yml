@@ -1,13 +1,18 @@
 language: generic
 
+env:
+  - RESULT_FILE = pl.txt
+
 sudo: required
 
 services:
   - docker
 
-before_install:
+before_script:
   - docker build -t polish-dictionary .
-  - docker run -v dist:/code/dist/ polish-dictionary
+  # - docker run -v dist:/code/dist/ polish-dictionary
 
 script:
-  - wc -l dist/pl.txt
+  - echo $RESULT_FILE
+  - echo "$RESULT_FILE"
+  - ls -la
