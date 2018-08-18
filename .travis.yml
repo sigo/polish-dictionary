@@ -2,7 +2,7 @@ language: generic
 
 env:
   - RESULT_FILE = pl.txt
-  - TEST_FILE = pl.txt
+  - TEST_FILE=pl.txt
 
 sudo: required
 
@@ -12,10 +12,5 @@ services:
 before_script:
   - docker build -t polish-dictionary .
   # - docker run -v dist:/code/dist/ polish-dictionary
-
-script:
-  - echo $RESULT_FILE
-  - echo "${RESULT_FILE}"
-  - echo $TEST_FILE
-  - echo "${TEST_FILE}"
-  - ls -la
+  - eccho "${RESULT_FILE}"
+  - eccho "${TEST_FILE}"
