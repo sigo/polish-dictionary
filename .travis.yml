@@ -21,7 +21,7 @@ before_script:
 script:
   - docker run -e RESULT_DIR -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
 
-after_success:
+after_script:
   - git add "${RESULT_DIR}"
   - git commit -m "Update"
   - git push
