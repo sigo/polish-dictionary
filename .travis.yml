@@ -3,6 +3,9 @@ language: bash
 env:
   - ENC_SSH_KEY=./id_rsa.enc SSH_KEY=./id_rsa DOCKER_IMAGE=polish-dictionary RESULT_DIR=dist/
 
+git:
+  depth: false
+
 sudo: required
 
 services:
@@ -20,8 +23,6 @@ before_script:
 
 script:
   - docker run -e RESULT_DIR -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
-
-after_script:
   - git add "${RESULT_DIR}"
   - git commit -m "Update"
   - git push
