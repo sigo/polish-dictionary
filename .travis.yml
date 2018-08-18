@@ -1,7 +1,10 @@
 language: bash
 
 env:
-  - ENC_SSH_KEY=./id_rsa.enc DOCKER_IMAGE=polish-dictionary RESULT_DIR=dist/
+  - REPO_REMOTE="git@github.com:sigo/polish-dictionary.git" \
+    ENC_SSH_KEY=./id_rsa.enc \
+    DOCKER_IMAGE=polish-dictionary \
+    RESULT_DIR=dist/
 
 sudo: required
 
