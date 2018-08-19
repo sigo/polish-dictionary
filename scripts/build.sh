@@ -2,7 +2,7 @@
 
 URL="https://sjp.pl/"
 DICTIONARIES_LIST_URL="${URL}slownik/en/"
-RESULT_FILE="${RESULT_DIR}/pl.txt" # RESULT_DIR is environment variable, e.g. set by CI
+RESULT_FILE="${RESULT_DIR}/${RESULT_DICTIONARY}"
 MIN_WORDS=1000000 # Dictionary must have greater or equal than MIN_WORDS words, or it is damaged
 
 print_text() {
@@ -17,6 +17,7 @@ print_error() {
 
 [ -z "${RESULT_DIR}" ] && print_error "RESULT_DIR variable is not set"
 [ ! -d "${RESULT_DIR}" ] && print_error "RESULT_DIR directory doesn't exists"
+[ -z "${RESULT_DICTIONARY}" ] && print_error "RESULT_DICTIONARY variable is not set"
 
 print_text "Downloading list of dictionaries"
 DICTIONARY_PATH=$(wget -qO - "${DICTIONARIES_LIST_URL}" | sed -n 's/^.*"\/\(.*sjp-aspell6.*\.tar\.bz2\)".*$/\1/p')

@@ -2,6 +2,14 @@
 
 # Is there any changes (i.e. dictionary have changes)?
 if [ -n "$(git diff)" ]; then
+    DATE=$(date)
+    NUMBER_OF_WORDS=$(wc -l "./dist/pl.txt" | cut -d' ' -f1)
+
+    cat ./templates/README.md | \
+        sed "s/\$CREATE_DATE/$DATE/" | \
+        sed "s/\$WORDS/$NUMBER_OF_WORDS/" | \
+        > "README.md"
+
     # Start SSH agent
     eval `ssh-agent -s`
 
@@ -18,8 +26,8 @@ if [ -n "$(git diff)" ]; then
     # Checkout to parent of detached branch
     git checkout -
 
-    # Add result directory as tracked
-    git add "${RESULT_DIR}"
+    # Add files as tracked
+    git add .
 
     # Commit changes
     git commit -m "Update"

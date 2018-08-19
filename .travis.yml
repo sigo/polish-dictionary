@@ -6,6 +6,9 @@ env:
     - REPO_URL="git@github.com:sigo/polish-dictionary.git"
     - DOCKER_IMAGE=polish-dictionary
     - RESULT_DIR=dist/
+    - RESULT_DICTIONARY=pl.txt
+    - TEMPLATES_DIR=templates/
+    - README=README.md
 
 sudo: required
 
