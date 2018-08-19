@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Is there any changes (i.e. dictionary have changes)?
-if [ -n "$(git diff)" ]; then
+if [ ! -n "$(git diff)" ]; then
     DATE=$(date)
     NUMBER_OF_WORDS=$(wc -l "./dist/pl.txt" | cut -d' ' -f1)
 
