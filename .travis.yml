@@ -26,4 +26,4 @@ script:
   - git add "${RESULT_DIR}"
   - git commit -m "Update"
   - git branch -va
-  # - git push -u origin master
+  - git push
