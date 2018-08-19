@@ -22,5 +22,5 @@ before_script:
   - docker build -t "${DOCKER_IMAGE}" .
 
 script:
-   - docker run -e RESULT_DIR -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
+   - docker run -e RESULT_DIR RESULT_DICTIONARY -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
    - ./scripts/deploy.sh
