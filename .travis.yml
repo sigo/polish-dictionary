@@ -24,4 +24,5 @@ script:
   - docker run -e RESULT_DIR -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
   - git add "${RESULT_DIR}"
   - git commit -m "Update"
-  - git push -u origin master
+  - git branch -va
+  # - git push -u origin master
