@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Is there any changes (i.e. dictionary have changes)?
-if [ -z "$(git diff)" ]; then
+if [ -n "$(git diff)" ]; then
     # Start SSH agent
     eval `ssh-agent -s`
 
