@@ -20,4 +20,4 @@ before_script:
 
 script:
    - docker run -e RESULT_DIR -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
-  # - ./scripts/deploy.sh
+   - ./scripts/deploy.sh
