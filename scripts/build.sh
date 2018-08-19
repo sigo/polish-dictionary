@@ -3,7 +3,7 @@
 URL="https://sjp.pl/"
 DICTIONARIES_LIST_URL="${URL}slownik/en/"
 RESULT_FILE="${RESULT_DIR}/pl.txt" # RESULT_DIR is environment variable, e.g. set by CI
-MIN_WORDS=1000000 # Dictionary must have greater than MIN_WORDS words, or it is damaged
+MIN_WORDS=1000000 # Dictionary must have greater or equal than MIN_WORDS words, or it is damaged
 
 print_text() {
     echo

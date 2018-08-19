@@ -1,10 +1,11 @@
 language: bash
 
 env:
-  - REPO_URL="git@github.com:sigo/polish-dictionary.git" \
-    ENC_SSH_KEY=./id_rsa.enc \
-    DOCKER_IMAGE=polish-dictionary \
-    RESULT_DIR=dist/
+  global:
+    - ENC_SSH_KEY=./id_rsa.enc
+    - REPO_URL="git@github.com:sigo/polish-dictionary.git"
+    - DOCKER_IMAGE=polish-dictionary
+    - RESULT_DIR=dist/
 
 sudo: required
 
@@ -14,18 +15,10 @@ git:
 services:
   - docker
 
-before_install:
-  - eval `ssh-agent -s`
-  - openssl aes-256-cbc -K $encrypted_4abc9283474e_key -iv $encrypted_4abc9283474e_iv -in "${ENC_SSH_KEY}" -d | ssh-add -
-  - git remote set-url origin "${REPO_URL}"
-  - git checkout -
-
 before_script:
   - docker build -t "${DOCKER_IMAGE}" .
 
 script:
-  - docker run -e RESULT_DIR -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
-  - git add "${RESULT_DIR}"
-  - git commit -m "Update"
-  - git branch -va
-  - git push
+  - docker run -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
+  # - docker run -e RESULT_DIR -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
+  # - ./scripts/deploy.sh
