@@ -6,9 +6,9 @@ if [ ! -n "$(git diff)" ]; then
     NUMBER_OF_WORDS=$(wc -l "./dist/pl.txt" | cut -d' ' -f2)
 
     cat ./templates/README.md | \
-        sed "s/\$CREATE_DATE/${DATE}/" | \
-        sed "s/\$WORDS/${NUMBER_OF_WORDS}/" \
-        > cat "README.md"
+        sed "s/\$CREATE_DATE/$DATE/" | \
+        sed "s/\$WORDS/$NUMBER_OF_WORDS/" \
+        > "README.md"
 
     # Start SSH agent
     eval `ssh-agent -s`
