@@ -1,6 +1,7 @@
 language: bash
 
 env:
+  # TODO: Think about simplification variables (are they all needed?)
   global:
     - ENC_SSH_KEY=./id_rsa.enc
     - REPO_URL="git@github.com:sigo/polish-dictionary.git"
@@ -23,4 +24,4 @@ before_script:
 
 script:
    - docker run -e RESULT_DIR -e RESULT_DICTIONARY -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
-   - ./scripts/deploy.sh
+   - ./scripts/deploy.sh # TODO: Skip when travis is pushing to repo or it's pull request

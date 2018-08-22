@@ -1,23 +1,18 @@
 #!/usr/bin/env sh
 
+# Load utils
+. utils.sh
+
 URL="https://sjp.pl/"
 DICTIONARIES_LIST_URL="${URL}slownik/en/"
 RESULT_FILE="${RESULT_DIR}/${RESULT_DICTIONARY}"
 MIN_WORDS=1000000 # Dictionary must have greater or equal than MIN_WORDS words, or it is damaged
 
-print_text() {
-    echo
-    echo "# ${1}"
-}
-
-print_error() {
-    echo "${1}"
-    exit 1
-}
-
 [ -z "${RESULT_DIR}" ] && print_error "RESULT_DIR variable is not set"
 [ ! -d "${RESULT_DIR}" ] && print_error "RESULT_DIR directory doesn't exists"
 [ -z "${RESULT_DICTIONARY}" ] && print_error "RESULT_DICTIONARY variable is not set"
+
+# TODO: Check correctness regular expressions
 
 print_text "Downloading list of dictionaries"
 DICTIONARY_PATH=$(wget -qO - "${DICTIONARIES_LIST_URL}" | sed -n 's/^.*"\/\(.*sjp-aspell6.*\.tar\.bz2\)".*$/\1/p')
@@ -45,12 +40,15 @@ aspell -d pl dump master | \
     sed 's/\s\s*/\n/g' | \
     sort | \
     uniq | \
-    sort > "${RESULT_FILE}"
+    sort \
+    > "${RESULT_FILE}"
 
 [ ! -f "${RESULT_FILE}" ] && print_error "Dictionary file doesn't exists"
 
+# TODO: Find proper way to count lines
 NUMBER_OF_WORDS=$(wc -l "${RESULT_FILE}" | cut -d' ' -f1)
 
+# TODO: Add MAX_WORDS condition
 [ "${NUMBER_OF_WORDS}" -lt "${MIN_WORDS}" ] && print_error "Dictionary is damaged"
 
-print_text "Generated dictionary have ${NUMBER_OF_WORDS} words"
+print_text "Dictionary is done and have ${NUMBER_OF_WORDS} words"

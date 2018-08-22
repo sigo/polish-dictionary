@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# TODO: Print messages about deploy steps
+# TODO: Redirect git stdout to /dev/null
+
 # Is there any changes (i.e. dictionary have changes)?
 if [ ! -n "$(git diff)" ]; then
     DATE=$(date)
