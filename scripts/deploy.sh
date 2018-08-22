@@ -5,6 +5,9 @@ if [ ! -n "$(git diff)" ]; then
     DATE=$(date)
     NUMBER_OF_WORDS=$(wc -l "./dist/pl.txt" | cut -d' ' -f2)
 
+    wc -l "./dist/pl.txt"
+    echo $NUMBER_OF_WORDS
+
     cat ./templates/README.md | \
         sed "s/\$CREATE_DATE/$DATE/" | \
         sed "s/\$WORDS/$NUMBER_OF_WORDS/" \
