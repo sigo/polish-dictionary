@@ -2,6 +2,8 @@
 
 # TODO: Print messages about deploy steps
 # TODO: Redirect git stdout to /dev/null
+# TODO: Think about git lfs
+# TODO: Think about pushing to github releases
 
 # Is there any changes (i.e. dictionary have changes)?
 if [ ! -n "$(git diff)" ]; then
