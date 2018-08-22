@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# Load utils
+. utils.sh
+
 # TODO: Print messages about deploy steps
 # TODO: Think about git lfs
 # TODO: Think about pushing to github releases
@@ -12,6 +15,7 @@ if [ ! -n "$(git diff)" ]; then
     wc -l "./dist/pl.txt"
     echo $NUMBER_OF_WORDS
 
+    print_text "Generating readme file"
     cat ./templates/README.md | \
         sed "s/\$CREATE_DATE/$DATE/" | \
         sed "s/\$WORDS/$NUMBER_OF_WORDS/" \
@@ -19,7 +23,7 @@ if [ ! -n "$(git diff)" ]; then
 
     # Start SSH agent
     eval `ssh-agent -s` \
-        1> /dev/null
+        &> /dev/null
 
     # Decrypt SSH key for deployment to GitHub and add it to agent
     openssl aes-256-cbc \
@@ -27,25 +31,26 @@ if [ ! -n "$(git diff)" ]; then
         -iv "${encrypted_4abc9283474e_iv}" \
         -in "${ENC_SSH_KEY}" -d | \
         ssh-add - \
-        1> /dev/null
+        &> /dev/null
 
     # Change origin's URL to ssh-authenticated (initial clone is https)
     git remote set-url origin "${REPO_URL}"
 
     # Checkout to parent of detached branch
     git checkout - \
-        1> /dev/null
+        &> /dev/null
 
     # Add files as tracked
     git add .
 
     # Commit changes
     git commit -m "Update" \
-        1> /dev/null
+        &> /dev/null
 
+    print_text "Pushing updates to repository"
     # Push changes
     git push \
-        1> /dev/null
+        &> /dev/null
 else
-    echo "No changes"
+    print_text "Dictionary is up-to-date"
 fi

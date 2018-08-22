@@ -52,4 +52,3 @@ NUMBER_OF_WORDS=$(wc -l "${RESULT_FILE}" | cut -d' ' -f1)
 [ "${NUMBER_OF_WORDS}" -lt "${MIN_WORDS}" ] && print_error "Dictionary is damaged"
 
 print_text "Dictionary is done and have ${NUMBER_OF_WORDS} words"
-print_error "Example error message"
