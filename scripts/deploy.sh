@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
 # TODO: Print messages about deploy steps
-# TODO: Redirect git stdout to /dev/null
 # TODO: Think about git lfs
 # TODO: Think about pushing to github releases
 
@@ -19,29 +18,34 @@ if [ ! -n "$(git diff)" ]; then
         > "README.md"
 
     # Start SSH agent
-    eval `ssh-agent -s`
+    eval `ssh-agent -s` \
+        1> /dev/null
 
     # Decrypt SSH key for deployment to GitHub and add it to agent
     openssl aes-256-cbc \
         -K "${encrypted_4abc9283474e_key}" \
         -iv "${encrypted_4abc9283474e_iv}" \
         -in "${ENC_SSH_KEY}" -d | \
-        ssh-add -
+        ssh-add - \
+        1> /dev/null
 
     # Change origin's URL to ssh-authenticated (initial clone is https)
     git remote set-url origin "${REPO_URL}"
 
     # Checkout to parent of detached branch
-    git checkout -
+    git checkout - \
+        1> /dev/null
 
     # Add files as tracked
     git add .
 
     # Commit changes
-    git commit -m "Update"
+    git commit -m "Update" \
+        1> /dev/null
 
     # Push changes
-    git push
+    git push \
+        1> /dev/null
 else
     echo "No changes"
 fi
