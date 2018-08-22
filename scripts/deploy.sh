@@ -3,12 +3,12 @@
 # Is there any changes (i.e. dictionary have changes)?
 if [ ! -n "$(git diff)" ]; then
     DATE=$(date)
-    NUMBER_OF_WORDS=$(wc -l "./dist/pl.txt" | cut -d' ' -f1)
+    NUMBER_OF_WORDS=$(wc -l "./dist/pl.txt" | cut -d' ' -f2)
 
     cat ./templates/README.md | \
-        sed "s/\$CREATE_DATE/$DATE/" | \
-        sed "s/\$WORDS/$NUMBER_OF_WORDS/" | \
-        > "README.md"
+        sed "s/\$CREATE_DATE/${DATE}/" | \
+        sed "s/\$WORDS/${NUMBER_OF_WORDS}/" \
+        > cat "README.md"
 
     # Start SSH agent
     eval `ssh-agent -s`
