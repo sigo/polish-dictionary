@@ -23,5 +23,7 @@ before_script:
   - docker build -t "${DOCKER_IMAGE}" .
 
 script:
-   #- docker run -e RESULT_DIR -e RESULT_DICTIONARY -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
-   - cd scripts/ && ls && ./deploy.sh # TODO: Skip when travis is pushing to repo or it's pull request
+  #- docker run -e RESULT_DIR -e RESULT_DICTIONARY -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
+  #- cd scripts/ && ls && ./deploy.sh # TODO: Skip when travis is pushing to repo or it's pull request
+  - echo "\e[1;31mTest message\e[0m"
+  - echo -e "\e[1;31mTest message\e[0m"
