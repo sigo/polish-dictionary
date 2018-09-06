@@ -1,5 +1,3 @@
 #!/usr/bin/env sh
 
-echo $0
-basename "$0"
-#. utils.sh
+echo -e "\e[1;32mTest message\e[0m"
