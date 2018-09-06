@@ -6,7 +6,8 @@
 URL="https://sjp.pl/"
 DICTIONARIES_LIST_URL="${URL}slownik/en/"
 RESULT_FILE="${RESULT_DIR}/${RESULT_DICTIONARY}"
-MIN_WORDS=1000000 # Dictionary must have greater or equal than MIN_WORDS words, or it is damaged
+MIN_WORDS=4000000 # Dictionary must have greater or equal than MIN_WORDS words
+MAX_WORDS=4500000 # Dictionary must have less or equal than MAX_WORDS words
 
 [ -z "${RESULT_DIR}" ] && print_error "RESULT_DIR variable is not set"
 [ ! -d "${RESULT_DIR}" ] && print_error "RESULT_DIR directory doesn't exists"
@@ -45,10 +46,10 @@ aspell -d pl dump master | \
 
 [ ! -f "${RESULT_FILE}" ] && print_error "Dictionary file doesn't exists"
 
-# TODO: Find proper way to count lines
 NUMBER_OF_WORDS=$(count_lines "${RESULT_FILE}")
 
-# TODO: Add MAX_WORDS condition
-[ "${NUMBER_OF_WORDS}" -lt "${MIN_WORDS}" ] && print_error "Dictionary is damaged"
+if [ "${NUMBER_OF_WORDS}" -lt "${MIN_WORDS}" ] || [ "${NUMBER_OF_WORDS}" -gt "${MAX_WORDS}" ]; then
+    print_error "Dictionary is damaged"
+fi
 
 print_text "Dictionary is done and have ${NUMBER_OF_WORDS} words"

@@ -3,17 +3,15 @@
 # Load utils
 . "$(dirname $0)/utils.sh"
 
-# TODO: Print messages about deploy steps
 # TODO: Think about git lfs
 # TODO: Think about pushing to github releases
 
 # Is there any changes (i.e. dictionary have changes)?
 if [ ! -n "$(git diff)" ]; then
+    ENC_SSH_KEY=./id_rsa.enc
+    REPO_URL="git@github.com:sigo/polish-dictionary.git"
     DATE=$(date)
-    NUMBER_OF_WORDS=$(wc -l "./dist/pl.txt" | cut -d' ' -f2)
-
-    wc -l "./dist/pl.txt"
-    echo $NUMBER_OF_WORDS
+    NUMBER_OF_WORDS=$(count_lines "./dist/pl.txt")
 
     print_text "Generating readme file"
     cat ./templates/README.md | \
@@ -47,10 +45,12 @@ if [ ! -n "$(git diff)" ]; then
     git commit -m "Update" \
         &> /dev/null
 
+    git diff
+
     print_text "Pushing updates to repository"
     # Push changes
-    git push \
-        &> /dev/null
+    #git push \
+        #&> /dev/null
 else
     print_text "Dictionary is up-to-date"
 fi
