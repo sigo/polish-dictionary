@@ -12,3 +12,7 @@ print_error() {
     printf "${RED_BOLD}${1}${RESET_COLORS}\n"
     exit 1
 }
+
+count_lines() {
+    wc -l "${1}" | awk '{print $1}'
+}

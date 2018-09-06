@@ -46,7 +46,7 @@ aspell -d pl dump master | \
 [ ! -f "${RESULT_FILE}" ] && print_error "Dictionary file doesn't exists"
 
 # TODO: Find proper way to count lines
-NUMBER_OF_WORDS=$(wc -l "${RESULT_FILE}" | cut -d' ' -f1)
+NUMBER_OF_WORDS=$(count_lines "${RESULT_FILE}")
 
 # TODO: Add MAX_WORDS condition
 [ "${NUMBER_OF_WORDS}" -lt "${MIN_WORDS}" ] && print_error "Dictionary is damaged"
