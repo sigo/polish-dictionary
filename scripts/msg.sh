@@ -1,3 +1,3 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-echo -e "\e[1;32mTest message\e[0m"
+echo -e "\033[1;32mTest message\033[0m"
