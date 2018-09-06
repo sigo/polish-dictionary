@@ -1,15 +1,14 @@
 #!/usr/bin/env sh
 
-GREEN_BOLD="\e[1;32m"
-RED_BOLD="\e[1;31m"
-RESET_COLORS="\e[0m"
+GREEN_BOLD="\033[1;32m"
+RED_BOLD="\033[1;31m"
+RESET_COLORS="\033[0m"
 
 print_text() {
-    echo
-    echo -e "${GREEN_BOLD}${1}${RESET_COLORS}"
+    printf "\n${GREEN_BOLD}${1}${RESET_COLORS}\n"
 }
 
 print_error() {
-    echo -e "${RED_BOLD}${1}${RESET_COLORS}"
+    printf "${RED_BOLD}${1}${RESET_COLORS}\n"
     exit 1
 }

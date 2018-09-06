@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Load utils
-. ./utils.sh
+. "$(dirname $0)/utils.sh"
 
 # TODO: Print messages about deploy steps
 # TODO: Think about git lfs

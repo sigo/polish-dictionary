@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Load utils
-. utils.sh
+. "$(dirname $0)/utils.sh"
 
 URL="https://sjp.pl/"
 DICTIONARIES_LIST_URL="${URL}slownik/en/"
