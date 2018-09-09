@@ -6,18 +6,25 @@
 # TODO: Think about git lfs
 # TODO: Think about pushing to github releases
 
+DATE=$(date)
+NUMBER_OF_WORDS=$(count_lines "./dist/pl.txt")
+
+print_text "Generating readme file"
+cat ./templates/README.md | \
+    sed "s/\$CREATE_DATE/${DATE}/" | \
+    sed "s/\$WORDS/${NUMBER_OF_WORDS}/" \
+    > "README.md"
+
+git diff
+
+[ true ] && exit
+
 # Is there any changes (i.e. dictionary have changes)?
 if [ ! -n "$(git diff)" ]; then
     ENC_SSH_KEY=./id_rsa.enc
     REPO_URL="git@github.com:sigo/polish-dictionary.git"
-    DATE=$(date)
-    NUMBER_OF_WORDS=$(count_lines "./dist/pl.txt")
 
-    print_text "Generating readme file"
-    cat ./templates/README.md | \
-        sed "s/\$CREATE_DATE/$DATE/" | \
-        sed "s/\$WORDS/$NUMBER_OF_WORDS/" \
-        > "README.md"
+    print_text "Pushing updates to repository"
 
     # Start SSH agent
     eval `ssh-agent -s` \
@@ -47,10 +54,9 @@ if [ ! -n "$(git diff)" ]; then
 
     git diff
 
-    print_text "Pushing updates to repository"
     # Push changes
     #git push \
         #&> /dev/null
 else
-    print_text "Dictionary is up-to-date"
+    print_text "Everything is up-to-date"
 fi
