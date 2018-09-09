@@ -3,13 +3,15 @@
 
 # polish-dictionary
 
-Polish dictionary (list of words) with everyday, automated build; as `.txt` plain file.
+Polish dictionary, with everyday automated build; as `.txt` plain file.
 
 **Dictionary status:**
 
-- link (permanent, always newest version): <https://raw.githubusercontent.com/sigo/polish-dictionary/master/dist/pl.txt>,
+- [permalink to dictionary](https://raw.githubusercontent.com/sigo/polish-dictionary/master/dist/pl.txt) (always newest version),
 - generation date: $CREATE_DATE,
 - number of words: $WORDS.
+
+If there's no updates for a few days - it's normal. Just dictionary doesn't have any updates at this moment.
 
 
 ## For what?
@@ -33,7 +35,7 @@ This repository doesn't have any connections with JetBrains or any other applica
 
 ## How?
 
-Group of good people from <https://sjp.pl/> created and maintaining probably most up-to-date and valuable Polish dictionary in the world. However, they only provide their work <https://sjp.pl/slownik/en/> as aspell, ispell and myspell dictionary packages.
+Group of good people from <https://sjp.pl/> created and maintaining probably most up-to-date and valuable Polish dictionary in the world. However, they only provide [their work](https://sjp.pl/slownik/en/) as aspell, ispell and myspell dictionary packages.
 
 Every day, this _library_, pull newest available aspell dictionary, dump it and push back to repository.
 

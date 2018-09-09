@@ -4,9 +4,8 @@
 . "$(dirname $0)/utils.sh"
 
 # TODO: Think about git lfs
-# TODO: Think about pushing to github releases
 
-DATE=$(date)
+DATE=$(date -uR)
 NUMBER_OF_WORDS=$(count_lines "./dist/pl.txt")
 
 print_text "Generating readme file"
@@ -14,10 +13,6 @@ cat ./templates/README.md | \
     sed "s/\$CREATE_DATE/${DATE}/" | \
     sed "s/\$WORDS/${NUMBER_OF_WORDS}/" \
     > "README.md"
-
-git diff
-
-[ true ] && exit
 
 # Is there any changes (i.e. dictionary have changes)?
 if [ ! -n "$(git diff)" ]; then
