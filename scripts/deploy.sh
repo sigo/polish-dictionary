@@ -15,7 +15,7 @@ cat ./templates/README.md | \
     > "README.md"
 
 # Is there any changes (i.e. dictionary have changes)?
-if [ ! -n "$(git diff)" ]; then
+if [ -n "$(git diff)" ]; then
     ENC_SSH_KEY=./id_rsa.enc
     REPO_URL="git@github.com:sigo/polish-dictionary.git"
 
