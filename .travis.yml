@@ -20,4 +20,4 @@ before_script:
 
 script:
   - docker run -e RESULT_DIR -e RESULT_DICTIONARY -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
-  - ./deploy.sh # TODO: Skip when travis is pushing to repo or it's pull request
+  - ./scripts/deploy.sh # TODO: Skip when travis is pushing to repo or it's pull request
