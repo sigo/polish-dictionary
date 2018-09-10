@@ -22,36 +22,29 @@ if [ -n "$(git diff)" ]; then
     print_text "Pushing updates to repository"
 
     # Start SSH agent
-    eval `ssh-agent -s` \
-        &> /dev/null
+    eval `ssh-agent -s`
 
     # Decrypt SSH key for deployment to GitHub and add it to agent
     openssl aes-256-cbc \
         -K "${encrypted_4abc9283474e_key}" \
         -iv "${encrypted_4abc9283474e_iv}" \
         -in "${ENC_SSH_KEY}" -d | \
-        ssh-add - \
-        &> /dev/null
+        ssh-add -
 
     # Change origin's URL to ssh-authenticated (initial clone is https)
     git remote set-url origin "${REPO_URL}"
 
     # Checkout to parent of detached branch
-    git checkout - \
-        &> /dev/null
+    git checkout -
 
     # Add files as tracked
     git add .
 
     # Commit changes
-    git commit -m "Update" \
-        &> /dev/null
-
-    git diff
+    git commit -m "Update [skip ci]"
 
     # Push changes
-    #git push \
-        #&> /dev/null
+    git push
 else
     print_text "Everything is up-to-date"
 fi
