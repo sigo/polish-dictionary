@@ -8,16 +8,18 @@
 DATE=$(date -uR)
 NUMBER_OF_WORDS=$(count_lines "./dist/pl.txt")
 
-print_text "Generating readme file"
-cat ./templates/README.md | \
-    sed "s/\$CREATE_DATE/${DATE}/" | \
-    sed "s/\$WORDS/${NUMBER_OF_WORDS}/" \
-    > "README.md"
+cat ./templates/README.md > "README.md"
 
 # Is there any changes (i.e. dictionary have changes)?
 if [ -n "$(git diff)" ]; then
     ENC_SSH_KEY=./id_rsa.enc
     REPO_URL="git@github.com:sigo/polish-dictionary.git"
+
+    print_text "Generating readme file"
+    cat ./templates/README.md | \
+        sed "s/\$CREATE_DATE/${DATE}/" | \
+        sed "s/\$WORDS/${NUMBER_OF_WORDS}/" \
+        > "README.md"
 
     print_text "Pushing updates to repository"
 
