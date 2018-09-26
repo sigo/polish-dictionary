@@ -46,6 +46,8 @@ You can manual generate the dictionary on the system with any shell (etc. `sh` o
 
 With below example, dictionary on your computer will be dumped to `dist/pl.txt`.
 
+It is important to **run scripts from root of the repository**. Executing commands from other directory will return error.
+
 ```sh
 export DOCKER_IMAGE="polish-dictionary"
 export DICTIONARY="dist/pl.txt"
