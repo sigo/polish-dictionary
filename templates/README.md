@@ -42,18 +42,19 @@ Every day, this _library_, pull newest available aspell dictionary, dump it and 
 
 ## Manual generation of dictionary
 
-You can manual generate the dictionary on the system with any shell (etc. `sh` or `bash`) and `docker`.
+You can manual generate the dictionary on the system with any shell (e.g. `sh`) and `docker`. With below example, dictionary on your computer will be dumped to `dist/pl.txt`.
 
-With below example, dictionary on your computer will be dumped to `dist/pl.txt`.
-
-It is important to **run scripts from root of the repository**. Executing commands from other directory will return error.
+It is important to **run scripts from root of the repository**. Executing commands from other directory will return error (sorry, it is just shell scripts 🙃).
 
 ```sh
 export DOCKER_IMAGE="polish-dictionary"
 export DICTIONARY="dist/pl.txt"
 ./scripts/docker_build.sh
 ./scripts/docker_run.sh
+docker rmi "${DOCKER_IMAGE}"
 ```
+
+After executing above commands, image and container will be deleted.
 
 
 ## Credits

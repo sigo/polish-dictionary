@@ -8,4 +8,4 @@
 
 MAPPED_DIR=$(dirname "${DICTIONARY}")
 
-docker run -e DICTIONARY -v "$(pwd)/${MAPPED_DIR}:/code/${MAPPED_DIR}" "${DOCKER_IMAGE}"
+docker run --rm -e DICTIONARY -v "$(pwd)/${MAPPED_DIR}:/code/${MAPPED_DIR}" "${DOCKER_IMAGE}"

@@ -1,5 +1,5 @@
 FROM alpine
 RUN apk add aspell aspell-utils make
 WORKDIR /code/
-COPY ./scripts/build.sh ./scripts/utils.sh ./
+COPY ./scripts/utils.sh ./scripts/build.sh ./
 CMD ./build.sh
