@@ -25,7 +25,7 @@ if [ -n "$(git diff)" ]; then
     print_text "Pushing updates to repository"
 
     # Start SSH agent
-    eval `ssh-agent -s` &> /dev/null
+    eval `ssh-agent -s &> /dev/null`
 
     # Decrypt SSH key for deployment to GitHub and add it to agent
     openssl aes-256-cbc \
