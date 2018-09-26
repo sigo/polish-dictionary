@@ -6,20 +6,20 @@
 # TODO: Think about git lfs
 
 DATE=$(date -uR)
-NUMBER_OF_WORDS=$(count_lines "./dist/pl.txt")
+NUMBER_OF_WORDS=$(count_lines "${DICTIONARY}")
 
-cat ./templates/README.md > "README.md"
-
-# Is there any changes (i.e. dictionary have changes)?
+# Is there any changes (dictionary have changes)?
 if [ -n "$(git diff)" ]; then
-    ENC_SSH_KEY=./id_rsa.enc
+    README_TEMPLATE="./templates/README.md"
+    README="README.md"
+    ENC_SSH_KEY="./id_rsa.enc"
     REPO_URL="git@github.com:sigo/polish-dictionary.git"
 
     print_text "Generating readme file"
-    cat ./templates/README.md | \
+    cat "${README_TEMPLATE}" | \
         sed "s/\$CREATE_DATE/${DATE}/" | \
         sed "s/\$WORDS/${NUMBER_OF_WORDS}/" \
-        > "README.md"
+        > "${README}"
 
     print_text "Pushing updates to repository"
 

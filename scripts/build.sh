@@ -5,13 +5,10 @@
 
 URL="https://sjp.pl/"
 DICTIONARIES_LIST_URL="${URL}slownik/en/"
-RESULT_FILE="${RESULT_DIR}/${RESULT_DICTIONARY}"
 MIN_WORDS=4000000 # Dictionary must have greater or equal than MIN_WORDS words
 MAX_WORDS=4500000 # Dictionary must have less or equal than MAX_WORDS words
 
-[ -z "${RESULT_DIR}" ] && print_error "RESULT_DIR variable is not set"
-[ ! -d "${RESULT_DIR}" ] && print_error "RESULT_DIR directory doesn't exists"
-[ -z "${RESULT_DICTIONARY}" ] && print_error "RESULT_DICTIONARY variable is not set"
+[ -z "${DICTIONARY}" ] && print_error "DICTIONARY variable is not set"
 
 # TODO: Check correctness regular expressions
 
@@ -42,14 +39,14 @@ aspell -d pl dump master | \
     sort | \
     uniq | \
     sort \
-    > "${RESULT_FILE}"
+    > "${DICTIONARY}"
 
-[ ! -f "${RESULT_FILE}" ] && print_error "Dictionary file doesn't exists"
+[ ! -f "${DICTIONARY}" ] && print_error "Dictionary file doesn't exists"
 
-NUMBER_OF_WORDS=$(count_lines "${RESULT_FILE}")
+NUMBER_OF_WORDS=$(count_lines "${DICTIONARY}")
 
 if [ "${NUMBER_OF_WORDS}" -lt "${MIN_WORDS}" ] || [ "${NUMBER_OF_WORDS}" -gt "${MAX_WORDS}" ]; then
-    print_error "Dictionary is damaged"
+    print_error "Dictionary is most likely damaged"
 fi
 
 print_text "Dictionary is done and have ${NUMBER_OF_WORDS} words"

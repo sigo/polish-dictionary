@@ -1,11 +1,9 @@
 language: bash
 
 env:
-  # TODO: Think about simplification variables (are they all needed?)
   global:
-    - DOCKER_IMAGE=polish-dictionary
-    - RESULT_DIR=dist/
-    - RESULT_DICTIONARY=pl.txt
+    - DOCKER_IMAGE="polish-dictionary"
+    - DICTIONARY="dist/pl.txt"
 
 sudo: required
 
@@ -16,8 +14,8 @@ services:
   - docker
 
 before_script:
-  - docker build -t "${DOCKER_IMAGE}" .
+  - ./scripts/docker_build.sh
 
 script:
-  - docker run -e RESULT_DIR -e RESULT_DICTIONARY -v "$(pwd)/${RESULT_DIR}:/code/${RESULT_DIR}" "${DOCKER_IMAGE}"
+  - ./scripts/docker_run.sh
   - ./scripts/deploy.sh # TODO: Skip when travis is pushing to repo or it's pull request
