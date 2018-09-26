@@ -40,6 +40,20 @@ Group of good people from <https://sjp.pl/> created and maintaining probably mos
 Every day, this _library_, pull newest available aspell dictionary, dump it and push back to repository.
 
 
+## Manual generation of dictionary
+
+You can manual generate the dictionary on the system with any shell (etc. `sh` or `bash`) and `docker`.
+
+With below example, dictionary on your computer will be dumped to `dist/pl.txt`.
+
+```sh
+export DOCKER_IMAGE="polish-dictionary"
+export DICTIONARY="dist/pl.txt"
+./scripts/docker_build.sh
+./scripts/docker_run.sh
+```
+
+
 ## Credits
 
 - [SJP team](https://sjp.pl/), for best Polish dictionary.
