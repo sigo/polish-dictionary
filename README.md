@@ -8,8 +8,8 @@ Polish dictionary, with everyday automated build; as `.txt` plain file.
 **Dictionary status:**
 
 - [permalink to dictionary](https://raw.githubusercontent.com/sigo/polish-dictionary/master/dist/pl.txt) (always newest version),
-- generation date: Mon, 10 Sep 2018 18:48:54 +0000,
-- number of words: 4075522.
+- generation date: Wed, 26 Sep 2018 18:08:09 +0000,
+- number of words: 4075569.
 
 If there's no updates for a few days - it's normal. Just dictionary doesn't have any updates at this moment.
 
