@@ -14,8 +14,9 @@ services:
   - docker
 
 before_script:
-  - exit 1
+  - ./scripts/docker_build.sh
 
 script:
+  - exit 1
   - ./scripts/docker_run.sh
   - ./scripts/deploy.sh # TODO: Skip when travis is pushing to repo or it's pull request
