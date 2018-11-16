@@ -14,7 +14,7 @@ services:
   - docker
 
 before_script:
-  - ./scripts/docker_build.sh
+  - exit 1
 
 script:
   - ./scripts/docker_run.sh
