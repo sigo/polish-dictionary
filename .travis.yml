@@ -17,6 +17,8 @@ before_script:
   - ./scripts/docker_build.sh
 
 script:
-  - exit 1
   - ./scripts/docker_run.sh
+
+after_success:
+  - exit 1
   - ./scripts/deploy.sh # TODO: Skip when travis is pushing to repo or it's pull request
