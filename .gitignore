@@ -146,3 +146,4 @@ $RECYCLE.BIN/
 ### Custom
 id_rsa
 id_rsa.pub
+node_modules/

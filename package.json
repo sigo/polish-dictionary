@@ -1,0 +1,9 @@
+{
+  "name": "polish-dictionary",
+  "description": "",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "semantic-release": "15.12.2"
+  }
+}
