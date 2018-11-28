@@ -3,15 +3,24 @@
 
 # polish-dictionary
 
-Polish dictionary, with everyday automated build; as `.txt` plain file.
+Polish dictionary, with everyday automated build, as `.txt` plain file.
+
+**NOTE: This project is under active development. Do not use it yet.**
 
 **Dictionary status:**
 
 - [permalink to dictionary](https://raw.githubusercontent.com/sigo/polish-dictionary/master/dist/pl.txt) (always newest version),
-- generation date: Wed, 26 Sep 2018 18:08:09 +0000,
-- number of words: 4075569.
+- generation date: Fri, 16 Nov 2018 20:15:21 +0000,
+- number of words: 0.
 
 If there's no updates for a few days - it's normal. Just dictionary doesn't have any updates at this moment.
+
+
+## Usage
+
+1. Download dictionary release.
+2. Clone repository.
+3. Install via `npm` or `yarn`.
 
 
 ## For what?
@@ -33,11 +42,16 @@ So... I just created it.
 This repository doesn't have any connections with JetBrains or any other applications. It is just `.txt` dictionary.
 
 
-## How?
+## How it works?
 
 Group of good people from <https://sjp.pl/> created and maintaining probably most up-to-date and valuable Polish dictionary in the world. However, they only provide [their work](https://sjp.pl/slownik/en/) as aspell, ispell and myspell dictionary packages.
 
-Every day, this _library_, pull newest available aspell dictionary, dump it and push back to repository.
+**tl;dr:** Every day, this _library_, pull newest available aspell dictionary, dump it and push back to repository.
+
+1. Every day CI trigger build based on [.travis.yml config](.travis.yml).
+    1. Build docker image ([scripts/docker_build.sh](scripts/docker_build.sh)).
+    2. Run docker container on built image ([scripts/docker_run.sh](scripts/docker_run.sh)).
+    3. Push back dictionary to repository if there's update ([scripts/dictionary_deploy.sh](scripts/dictionary_deploy.sh)).
 
 
 ## Manual generation of dictionary
